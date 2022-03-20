@@ -3,6 +3,8 @@ Webmozart Console command to convert temperatures between C and F
 
 **Usage**
 
+(`bin/console` if not added to your paths file)
+
 *Celsius to Fahrenheit*
 
 ```console temperature -c 50```
