@@ -44,14 +44,14 @@ class TemperatureTest extends TestCase
         $this->errorStream = new BufferedOutputStream();
     }
 
-    public function test_command_returns_successful_status()
+    public function testCommandReturnsSuccessfulStatus()
     {
         $command = 'temperature -c 42';
-        $status = $this->run_command_with_standard_setup($command);
+        $status = $this->runCommandWithStandardSetup($command);
         $this->assertEquals(0, $status);
     }
 
-    public function test_command_returns_correct_celsius_calculations()
+    public function testCommandReturnsCorrectTemperatureCalculations()
     {
         $commands = [];
 
@@ -76,7 +76,7 @@ class TemperatureTest extends TestCase
         }
     }
 
-    public function test_if_handles_zero_temperatures()
+    public function testIfHandlesZeroTemperatures()
     {
         $commands = ['temperature -c 0', 'temperature -f 0'];
         $application = new ConsoleApplication($this->config);
@@ -86,31 +86,31 @@ class TemperatureTest extends TestCase
         }
     }
 
-    public function test_fails_if_both_c_and_f_are_set()
+    public function testFailsIfBothCAndFAreSet()
     {
         $command = 'temperature -c 10 -f 10';
-        $status = $this->run_command_with_standard_setup($command);
+        $status = $this->runCommandWithStandardSetup($command);
         $this->assertEquals(1, $status);
         $this->assertNotEmpty($this->errorStream->fetch());
     }
 
-    public function test_fails_if_neither_c_or_f_are_set()
+    public function testFailsIfNeitherCOrFAreSet()
     {
         $command = 'temperature';
-        $status = $this->run_command_with_standard_setup($command);
+        $status = $this->runCommandWithStandardSetup($command);
         $this->assertEquals(1, $status);
         $this->assertNotEmpty($this->errorStream->fetch());
     }
 
-    public function test_fails_if_non_numeric_values_are_used()
+    public function testFailsIfNonNumericValuesAreUsed()
     {
         $command = 'temperature -c X';
-        $status = $this->run_command_with_standard_setup($command);
+        $status = $this->runCommandWithStandardSetup($command);
         $this->assertEquals(1, $status);
         $this->assertNotEmpty($this->errorStream->fetch());
     }
 
-    protected function run_command_with_standard_setup(string $args)
+    protected function runCommandWithStandardSetup(string $args)
     {
         $application = new ConsoleApplication($this->config);
         return $application->run(new StringArgs($args), $this->inputStream, $this->outputStream, $this->errorStream);
