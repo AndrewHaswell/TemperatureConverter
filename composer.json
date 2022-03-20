@@ -1,0 +1,17 @@
+{
+    "require": {
+        "webmozart/console": "~1.0@beta",
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Converter\\": "src/",
+            "ConverterConfig\\": "app/config/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "tests\\": "tests/"
+        }
+    }
+}

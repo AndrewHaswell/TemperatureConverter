@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php
+
+use ConverterConfig\ConverterConfig;
+use Webmozart\Console\ConsoleApplication;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$app = new ConsoleApplication(new ConverterConfig());
+$app->run();
